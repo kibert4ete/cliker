@@ -1,5 +1,5 @@
 //создаем переменную для денег
-money = 0
+money = 1000000
 progress = 0
 level = 1
 price_click = 1
@@ -7,7 +7,7 @@ price_click = 1
 	autoclick = 0
 	function autoclicker() {
 		money += autoclick
-		$('.money__num').text(money)
+		reset_money()
 	}
 		setInterval(autoclicker, 1000) ;
 		
@@ -16,7 +16,7 @@ price_click = 1
 			if ( money >=300){
 				autoclick += 1
 				money-=300
-			$('.money__num').text(money)
+			reset_money()
 		}else{
 			alert("денег недосаточно")
 		}
@@ -34,7 +34,7 @@ levels={
 $('.personage').on('click',function(){
 	money += price_click
 	progress += 1
-	$('.money__num').text(money)
+	reset_money()
 	if(progress == levels[level]["click"]){
 		level += 1
 		progress = 0
@@ -48,7 +48,7 @@ function money_plus_1(){
 	if(money>=100) {
 	price_click+= 1
 	money -= 100
-	$('.money__num').text(money)
+	reset_money()
 	}else{
 		alert("денег недостаточно")
 		
@@ -59,7 +59,7 @@ function money_x_2(){
 	if(money>=200) {
 	price_click*= 2
 	money -= 200
-	$('.money__num').text(money)
+	reset_money()
 	}else{
 		alert("денег недостаточно")
 		
@@ -69,17 +69,41 @@ function money_plus_3(){
 	if(money>=300) {
 	price_click+= 1
 	money -= 300
-	$('.money__num').text(money)
+	reset_money()
 	}else{
 		alert("денег недостаточно")
 	}
 }
 function money_plus_4(){
-	if(money>=400) {
+	if(money>=200) {
 	price_click+= 1
-	money -= 400
-	$('.money__num').text(money)
+	money -= 200
+	reset_money() 
 	}else{
 		alert("денег недостаточно")
 	}
 }
+function reset_money()
+{ 
+	if  (money<1000)
+	{
+		$('.money__num').text( money)
+	}
+	if(money>=1000 && money < 1000000) 
+	{
+		$('.money__num').text( Math.floor(money / 1000)+'тыс.')
+	}
+	if(money>=1000000 && money < 10000000) 
+	{
+		$('.money__num').text( Math.floor(money / 1000000)+'млн.')
+	}
+
+
+	
+	
+	if(money>=10000000 && money < 100000000) {
+		$('.money__num').text( Math.floor(money / 10000)+'млрд .')
+	}
+}
+
+	
