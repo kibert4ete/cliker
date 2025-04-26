@@ -12,8 +12,10 @@ price_click = 1
 		setInterval(autoclicker, 1000) ;
 		
 		function auto(){
-			autoclick += 1
-			if ( money >=10){
+			
+			if ( money >=300){
+				autoclick += 1
+				money-=300
 			$('.money__num').text(money)
 		}else{
 			alert("денег недосаточно")
